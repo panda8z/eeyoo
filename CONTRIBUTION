@@ -1,0 +1,8 @@
+
+## git-flow 
+
+git clone git@gitee.com:panda8xy/gin-blog.git
+git fetch
+git pull
+git checkout -b develop origin/develop
+
