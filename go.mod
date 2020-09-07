@@ -8,14 +8,16 @@ require (
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/jinzhu/gorm v1.9.16
+	github.com/jinzhu/now v1.1.1 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/smartystreets/goconvey v1.6.4 // indirect
+	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
 	golang.org/x/sys v0.0.0-20200905004654-be1d3432aa8f // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/ini.v1 v1.61.0
 	gopkg.in/yaml.v2 v2.3.0 // indirect
-	gorm.io/gorm v1.20.0 // indirect
 )
 
 replace (
@@ -25,6 +27,6 @@ replace (
 	gitee.com/panda8xy/gin-blog/routes => ./routes
 	gitee.com/panda8xy/gin-blog/upload => ./upload
 	gitee.com/panda8xy/gin-blog/utils => ./utils
-	gitee.com/panda8xy/gin-blog/web => ./web
 	gitee.com/panda8xy/gin-blog/utils/errors => ./utils/errors
+	gitee.com/panda8xy/gin-blog/web => ./web
 )

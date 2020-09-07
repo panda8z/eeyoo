@@ -2,6 +2,7 @@ package model
 
 import "github.com/jinzhu/gorm"
 
+// Article model
 type Article struct {
 	gorm.Model
 	Title   string `gorm:"type:varchar(100);not null" json:"title"`

@@ -36,11 +36,6 @@ func AddUser(c *gin.Context) {
 	})
 }
 
-// GetUsetById search user by id
-func GetUsetById(c *gin.Context) {
-
-}
-
 // GetUserList search user list
 func GetUserList(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
@@ -59,6 +54,11 @@ func GetUserList(c *gin.Context) {
 		"data":   data,
 		"msg":    errors.Msg(code),
 	})
+
+}
+
+// GetUsetById search user by id
+func GetUsetById(c *gin.Context) {
 
 }
 
