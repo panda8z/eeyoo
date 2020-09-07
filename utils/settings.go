@@ -2,6 +2,7 @@ package utils
 
 import (
 	"log"
+	"os"
 
 	"gopkg.in/ini.v1"
 )
@@ -18,9 +19,12 @@ var (
 )
 
 func init() {
-	file, err := ini.Load("./config/config.ini")
+	// file, err := ini.Load("./config/config.ini")
+	os.Setenv("CONFIG_FILE", "/Users/zcj/panda/git4me/gin-blog/config/config.ini")
+
+	file, err := ini.Load(os.Getenv("CONFIG_FILE"))
 	if err != nil {
-		log.Println(err.Error())
+		log.Println(err.Error() + os.Getenv("CONFIG_FILE"))
 		log.Println("Config file not found or open it with error, pleas check src/config/config.ini ")
 		panic(err)
 	}
