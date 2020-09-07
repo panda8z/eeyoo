@@ -20,11 +20,13 @@ git checkout -b develop origin/develop
 
 ## 1.1 init go mod
 
-go mod init gitee.com/panda8xy/gin-blog
+`go mod init gitee.com/panda8xy/gin-blog`
 
 ## 1.2 add gin
 
-go get -u github.com/gin-gonic/gin
+[Quickstart | Gin Web Framework](https://gin-gonic.com/docs/quickstart/)
+
+`go get -u github.com/gin-gonic/gin`
 
 ## 1.3 add main.go and test
 
@@ -46,11 +48,13 @@ func main() {
 
 ## 1.4 project structure
 
-mkdir api middleware config model routes upload utils web
+`mkdir api middleware config model routes upload utils web`
 
 ## 1.5 add config file tool
 
-go get gopkg.in/ini.v1
+[go-ini/ini: 超赞的 Go 语言 INI 文件操作](https://ini.unknwon.io/)
+
+`go get gopkg.in/ini.v1`
 
 ## 1.6 add config file
 
