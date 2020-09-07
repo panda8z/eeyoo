@@ -30,7 +30,7 @@ var codeMap = map[int]string{
 	ERROR_TOKEN_TYPE_WRONG: "TOKEN格式错误",
 }
 
-// Code getter for errors
-func Code(codeNum int) string {
+// Msg getter for errors
+func Msg(codeNum int) string {
 	return codeMap[codeNum]
 }

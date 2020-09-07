@@ -26,4 +26,5 @@ replace (
 	gitee.com/panda8xy/gin-blog/upload => ./upload
 	gitee.com/panda8xy/gin-blog/utils => ./utils
 	gitee.com/panda8xy/gin-blog/web => ./web
+	gitee.com/panda8xy/gin-blog/utils/errors => ./utils/errors
 )
