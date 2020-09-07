@@ -57,17 +57,17 @@ func GetUserList(c *gin.Context) {
 
 }
 
-// GetUsetById search user by id
-func GetUsetById(c *gin.Context) {
+// GetUsetByID search user by id
+func GetUsetByID(c *gin.Context) {
 
 }
 
-// edit user info
+// EditUser edit user info
 func EditUser(c *gin.Context) {
 
 }
 
-// delete user
+// DeleteUser delete user
 func DeleteUser(c *gin.Context) {
 
 }
