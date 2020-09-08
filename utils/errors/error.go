@@ -4,7 +4,7 @@ const (
 	SUCCESS = 200
 	ERROR   = 500
 
-	// code = 1000 - 1999 user errs
+	// code = 1001 - 1999 user errs
 	ERROR_USERNAME_USED    = 1001
 	ERROR_PASSWORD_WRONG   = 1002
 	ERROR_USER_NOT_FOUND   = 1003
@@ -13,9 +13,9 @@ const (
 	ERROR_TOKEN_WRONG      = 1006
 	ERROR_TOKEN_TYPE_WRONG = 1007
 
-	// code = 2000 - 2999 article errs
-
-	// code = 3000 - 3999 category errs
+	// code = 2001 - 2999 article errs
+	ERROR_CATEGORY_USED = 2001
+	// code = 3001 - 3999 category errs
 )
 
 var codeMap = map[int]string{
@@ -28,6 +28,7 @@ var codeMap = map[int]string{
 	ERROR_TOKEN_OUTTIME:    "TOKEN已过期",
 	ERROR_TOKEN_WRONG:      "TOKEN不正确",
 	ERROR_TOKEN_TYPE_WRONG: "TOKEN格式错误",
+	ERROR_CATEGORY_USED:    "Cate已存在",
 }
 
 // Msg getter for errors

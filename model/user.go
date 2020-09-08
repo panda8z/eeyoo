@@ -87,7 +87,7 @@ func UpdateUser(id int, user *User) int {
 	return errors.SUCCESS
 }
 
-// BerforSave ecrypt use scrypt
-func (u *User) BerforSave() {
+// BeforeSave ecrypt use scrypt
+func (u *User) BeforeSave() {
 	u.Password = utils.ScryptPassword(u.Password)
 }

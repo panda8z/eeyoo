@@ -100,7 +100,7 @@ func EditUser(c *gin.Context) {
 // DeleteUser delete user
 func DeleteUser(c *gin.Context) {
 	code := errors.SUCCESS
-	id, err := strconv.Atoi(c.Query("userID"))
+	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		code = errors.ERROR_USER_NOT_FOUND
 	}

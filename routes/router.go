@@ -29,6 +29,13 @@ func InitRouter() {
 		router.PUT("user/:id", v1.EditUser)
 		router.DELETE("user/:id", v1.DeleteUser)
 
+		//category
+		router.POST("cate/add", v1.AddCate)
+		router.GET("cates", v1.GetCategoryList)
+		router.GET("cate/:id", v1.GetCateByID)
+		router.PUT("cate/:id", v1.EditCate)
+		router.DELETE("cate/:id", v1.DeleteCate)
+
 		// article
 
 		// lgoin
