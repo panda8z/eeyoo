@@ -16,6 +16,7 @@ const (
 	// code = 2001 - 2999 article errs
 	ERROR_CATEGORY_USED = 2001
 	// code = 3001 - 3999 category errs
+	ERROR_ARTICLE_USED = 3001
 )
 
 var codeMap = map[int]string{
@@ -29,6 +30,7 @@ var codeMap = map[int]string{
 	ERROR_TOKEN_WRONG:      "TOKEN不正确",
 	ERROR_TOKEN_TYPE_WRONG: "TOKEN格式错误",
 	ERROR_CATEGORY_USED:    "Cate已存在",
+	ERROR_ARTICLE_USED:     "文章已存在",
 }
 
 // Msg getter for errors

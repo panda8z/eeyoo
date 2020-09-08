@@ -37,7 +37,11 @@ func InitRouter() {
 		router.DELETE("cate/:id", v1.DeleteCate)
 
 		// article
-
+		router.POST("article/add", v1.AddArticle)    //
+		router.GET("articles", v1.GetArticleList)    // todo
+		router.GET("article/:id", v1.GetArticleByID) // todo
+		router.PUT("article/:id", v1.EditArt)        //
+		router.DELETE("article/:id", v1.DeleteArt)   //
 		// lgoin
 	}
 
