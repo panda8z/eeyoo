@@ -22,13 +22,61 @@ func AddArticle(c *gin.Context) {
 	})
 }
 
-// GetArticleByID search article by id
-func GetArticleByID(c *gin.Context) {
+// GetArticleInfo search article by id
+func GetArticleInfo(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	article, code := model.ArticleInfoByID(id)
+	if code == errors.ERROR_ARTICLE_NOT_EXIST {
+		c.Abort()
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"status": code,
+		"data":   article,
+		"msg":    errors.Msg(code),
+	})
+}
 
+// GetArticlesByCateID search article by id
+func GetArticlesByCateID(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
+	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
+
+	if pageSize == 0 {
+		pageSize = -1
+	}
+	if pageNum == 0 {
+		pageNum = -1
+	}
+	art, code := model.ArticlesByCateID(id, pageSize, pageNum)
+	if code == errors.ERROR_ARTICLE_NOT_EXIST {
+		c.Abort()
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"status": code,
+		"data":   *art,
+		"msg":    errors.Msg(code),
+	})
 }
 
 // GetArticleList search article list in pageable
 func GetArticleList(c *gin.Context) {
+	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
+	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
+
+	if pageSize == 0 {
+		pageSize = -1
+	}
+	if pageNum == 0 {
+		pageNum = -1
+	}
+	data, code := model.ArticleList(pageSize, pageNum)
+	c.JSON(http.StatusOK, gin.H{
+		"status": code,
+		"data":   data,
+		"msg":    errors.Msg(code),
+	})
+
 }
 
 // EditArt edit art info

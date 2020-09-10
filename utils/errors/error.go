@@ -14,23 +14,26 @@ const (
 	ERROR_TOKEN_TYPE_WRONG = 1007
 
 	// code = 2001 - 2999 article errs
-	ERROR_CATEGORY_USED = 2001
+	ERROR_ARTICLE_USED      = 2001
+	ERROR_ARTICLE_NOT_EXIST = 2002
+
 	// code = 3001 - 3999 category errs
-	ERROR_ARTICLE_USED = 3001
+	ERROR_CATEGORY_USED = 3001
 )
 
 var codeMap = map[int]string{
-	SUCCESS:                "OK",
-	ERROR:                  "FIAL",
-	ERROR_USERNAME_USED:    "用户名已存在",
-	ERROR_PASSWORD_WRONG:   "密码错误",
-	ERROR_USER_NOT_FOUND:   "用户未找到",
-	ERROR_TOKEN_EXIST:      "TOKEN不存在",
-	ERROR_TOKEN_OUTTIME:    "TOKEN已过期",
-	ERROR_TOKEN_WRONG:      "TOKEN不正确",
-	ERROR_TOKEN_TYPE_WRONG: "TOKEN格式错误",
-	ERROR_CATEGORY_USED:    "Cate已存在",
-	ERROR_ARTICLE_USED:     "文章已存在",
+	SUCCESS:                 "OK",
+	ERROR:                   "FIAL",
+	ERROR_USERNAME_USED:     "用户名已存在",
+	ERROR_PASSWORD_WRONG:    "密码错误",
+	ERROR_USER_NOT_FOUND:    "用户未找到",
+	ERROR_TOKEN_EXIST:       "TOKEN不存在",
+	ERROR_TOKEN_OUTTIME:     "TOKEN已过期",
+	ERROR_TOKEN_WRONG:       "TOKEN不正确",
+	ERROR_TOKEN_TYPE_WRONG:  "TOKEN格式错误",
+	ERROR_CATEGORY_USED:     "Cate已存在",
+	ERROR_ARTICLE_USED:      "文章已存在",
+	ERROR_ARTICLE_NOT_EXIST: "文章不存在",
 }
 
 // Msg getter for errors

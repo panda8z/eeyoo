@@ -9,6 +9,7 @@ import (
 
 // Article model
 type Article struct {
+	Category Category `gorm:"foreignkey:Cid"`
 	gorm.Model
 	Title   string `gorm:"type:varchar(100);not null" json:"title"`
 	Cid     int    `gorm:"type:int;not null" json:"cid"`
@@ -17,28 +18,7 @@ type Article struct {
 	Img     string `gorm:"type:varchar(100)" json:"img"`
 }
 
-// CheckArticleName  check name is existed
-func CheckArticleName(name string) int {
-	var art Article
-	db.Select("id").Where("name = ?", name).First(&art)
-	if art.ID > 0 {
-		return errors.ERROR_CATEGORY_USED // 2001
-	}
-	return errors.SUCCESS
-}
-
-// GetArticleByID search art with specified id
-func GetArticleByID(id int) (*Article, error) {
-	var art Article
-	err := db.Where("id = ?", id).First(&art).Error
-	if err != nil {
-		log.Fatal(err.Error())
-		return nil, err
-	}
-	return &art, nil
-}
-
-// CreateArticle add a new art to database
+// CreateArticle Add a new art to database
 func CreateArticle(art *Article) int {
 	err := db.Create(&art).Error
 	if err != nil {
@@ -47,15 +27,48 @@ func CreateArticle(art *Article) int {
 	return errors.SUCCESS
 }
 
-// ArticleList get art list in pageable
-func ArticleList(pageSize int, pageNum int) []Article {
-	var arts []Article
+// CheckArticleName  check article name is existed
+// func CheckArticleName(name string) int {
+// 	var art Article
+// 	db.Select("id").Where("name = ?", name).First(&art)
+// 	if art.ID > 0 {
+// 		return errors.ERROR_CATEGORY_USED // 2001
+// 	}
+// 	return errors.SUCCESS
+// }
 
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil
+// ArticlesByCateID getter for articles with same Category ID
+func ArticlesByCateID(id int, pageSize int, pageNum int) (*[]Article, int) {
+	var arts []Article
+	err := db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid = ?", id).First(&arts).Error
+	if err != nil {
+		log.Fatal(err.Error())
+		return nil, errors.ERROR_ARTICLE_NOT_EXIST
 	}
-	return arts
+	return &arts, errors.SUCCESS
+}
+
+// ArticleInfoByID getter for article with specified Article ID
+func ArticleInfoByID(id int) (Article, int) {
+	var art Article
+	err := db.Preload("Category").Where("id = ?", id).First(&art).Error
+	if err != nil {
+		log.Fatal(err.Error())
+		return art, errors.ERROR_ARTICLE_NOT_EXIST
+	}
+	return art, errors.SUCCESS
+}
+
+// ArticleList get art list in pageable
+func ArticleList(pageSize int, pageNum int) ([]Article, int) {
+	// SELECT * FROM `article`  WHERE `article`.`deleted_at` IS NULL LIMIT 20 OFFSET 0
+	// SELECT * FROM `category`  WHERE `category`.`deleted_at` IS NULL AND ((`id` IN (5)))
+	var arts []Article
+	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return nil, errors.ERROR
+	}
+	return arts, errors.SUCCESS
 }
 
 // SoftDeletArticle delete art softy
