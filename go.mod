@@ -3,6 +3,7 @@ module gitee.com/panda8xy/gin-blog
 go 1.14
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.3.0 // indirect
 	github.com/go-sql-driver/mysql v1.5.0
@@ -22,7 +23,7 @@ require (
 
 replace (
 	gitee.com/panda8xy/gin-blog/api => ./api
-	gitee.com/panda8xy/gin-blog/middleware => ./middleware
+	gitee.com/panda8xy/gin-blog/middleware/jwt => ./middleware/jwt
 	gitee.com/panda8xy/gin-blog/model => ./model
 	gitee.com/panda8xy/gin-blog/routes => ./routes
 	gitee.com/panda8xy/gin-blog/upload => ./upload

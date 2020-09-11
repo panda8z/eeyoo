@@ -9,6 +9,7 @@ import (
 
 var (
 	AppMode    string
+	JwtKey     string
 	HttpPort   string
 	Db         string
 	DbHost     string
@@ -28,11 +29,15 @@ func init() {
 		log.Println("Config file not found or open it with error, pleas check src/config/config.ini ")
 		panic(err)
 	}
+	loadApp(file)
 	loadServer(file)
 	loadDatabase(file)
 
 }
 
+func loadApp(file *ini.File) {
+	AppMode = file.Section("app").Key("JwtKey").MustString("!@#$%^&*()qwertyuiop")
+}
 func loadServer(file *ini.File) {
 	AppMode = file.Section("server").Key("AppMode").MustString("debug")
 	HttpPort = file.Section("server").Key("HttpPort").MustString("8081")
