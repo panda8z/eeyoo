@@ -23,7 +23,7 @@ require (
 
 replace (
 	gitee.com/panda8xy/gin-blog/api => ./api
-	gitee.com/panda8xy/gin-blog/middleware/jwt => ./middleware/jwt
+	gitee.com/panda8xy/gin-blog/middleware => ./middleware
 	gitee.com/panda8xy/gin-blog/model => ./model
 	gitee.com/panda8xy/gin-blog/routes => ./routes
 	gitee.com/panda8xy/gin-blog/upload => ./upload

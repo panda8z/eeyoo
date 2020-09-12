@@ -91,3 +91,22 @@ func UpdateUser(id int, user *User) int {
 func (u *User) BeforeSave() {
 	u.Password = utils.ScryptPassword(u.Password)
 }
+
+// CheckLogin check user with username
+func CheckLogin(username, password string) int {
+	var user User
+	db.Where("username = ?", username).Find(&user)
+	if user.ID == 0 {
+		return errors.ERROR_USER_NOT_FOUND
+	}
+
+	if utils.ScryptPassword(password) != user.Password {
+		return errors.ERROR_PASSWORD_WRONG
+	}
+
+	if user.Role != 0 {
+		return errors.ERROR_USER_NO_RIGHTS
+	}
+
+	return errors.SUCCESS
+}

@@ -1,9 +1,8 @@
 package routes
 
 import (
-	"net/http"
-
 	v1 "gitee.com/panda8xy/gin-blog/api/v1"
+	middleware "gitee.com/panda8xy/gin-blog/middleware/jwt"
 	"gitee.com/panda8xy/gin-blog/utils"
 	"github.com/gin-gonic/gin"
 )
@@ -14,36 +13,43 @@ func InitRouter() {
 
 	r := gin.Default()
 
-	router := r.Group("api/v1")
+	authRouter := r.Group("api/v1")
+	authRouter.Use(middleware.Jwt())
 	{
-		router.GET("hello", func(c *gin.Context) {
-			c.JSON(http.StatusOK, gin.H{
-				"msg": "OK",
-			})
-		})
-
 		// user
-		router.POST("user/add", v1.AddUser)
-		router.GET("user/:id", v1.GetUsetByID)
-		router.GET("users", v1.GetUserList)
-		router.PUT("user/:id", v1.EditUser)
-		router.DELETE("user/:id", v1.DeleteUser)
+		authRouter.POST("user/add", v1.AddUser)
+		authRouter.PUT("user/:id", v1.EditUser)
+		authRouter.DELETE("user/:id", v1.DeleteUser)
 
 		//category
-		router.POST("cate/add", v1.AddCate)
-		router.GET("cates", v1.GetCategoryList)
-		router.GET("cate/:id", v1.GetCateByID)
-		router.PUT("cate/:id", v1.EditCate)
-		router.DELETE("cate/:id", v1.DeleteCate)
+		authRouter.POST("cate/add", v1.AddCate)
+		authRouter.PUT("cate/:id", v1.EditCate)
+		authRouter.DELETE("cate/:id", v1.DeleteCate)
 
 		// article
-		router.POST("article/add", v1.AddArticle)
-		router.PUT("article/:id", v1.EditArt)
-		router.DELETE("article/:id", v1.DeleteArt)
-		router.GET("article/list", v1.GetArticleList)
-		router.GET("article/cate/:id", v1.GetArticlesByCateID)
-		router.GET("article/info/:id", v1.GetArticleInfo)
+		authRouter.POST("article/add", v1.AddArticle)
+		authRouter.PUT("article/:id", v1.EditArt)
+		authRouter.DELETE("article/:id", v1.DeleteArt)
+
+	}
+
+	publicRouter := r.Group("api/v1")
+
+	{
 		// lgoin
+		publicRouter.POST("login", v1.Login)
+		// user
+		publicRouter.GET("user/:id", v1.GetUsetByID)
+		publicRouter.GET("users", v1.GetUserList)
+
+		//category
+		publicRouter.GET("cates", v1.GetCategoryList)
+		publicRouter.GET("cate/:id", v1.GetCateByID)
+
+		// article
+		publicRouter.GET("article/list", v1.GetArticleList)
+		publicRouter.GET("article/cate/:id", v1.GetArticlesByCateID)
+		publicRouter.GET("article/info/:id", v1.GetArticleInfo)
 	}
 
 	r.Run(utils.HttpPort)
