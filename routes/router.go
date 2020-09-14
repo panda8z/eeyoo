@@ -17,7 +17,6 @@ func InitRouter() {
 	authRouter.Use(middleware.Jwt())
 	{
 		// user
-		authRouter.POST("user/add", v1.AddUser)
 		authRouter.PUT("user/:id", v1.EditUser)
 		authRouter.DELETE("user/:id", v1.DeleteUser)
 
@@ -31,11 +30,16 @@ func InitRouter() {
 		authRouter.PUT("article/:id", v1.EditArt)
 		authRouter.DELETE("article/:id", v1.DeleteArt)
 
+		// upload file
+		authRouter.POST("upload", v1.UploadFile)
+
 	}
 
 	publicRouter := r.Group("api/v1")
 
 	{
+		// 注册?
+		publicRouter.POST("user/add", v1.AddUser)
 		// lgoin
 		publicRouter.POST("login", v1.Login)
 		// user

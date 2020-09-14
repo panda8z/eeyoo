@@ -14,6 +14,7 @@ const (
 	ERROR_TOKEN_WRONG      = 1006
 	ERROR_TOKEN_TYPE_WRONG = 1007
 	ERROR_USER_NO_RIGHTS   = 1008 //  no right login backened
+	ERROR_FILE_UPLOAD      = 1009
 
 	// code = 2001 - 2999 article errs
 
@@ -39,6 +40,7 @@ var codeMap = map[int]string{
 	ERROR_ARTICLE_USED:      "文章已存在",
 	ERROR_ARTICLE_NOT_EXIST: "文章不存在",
 	ERROR_USER_NO_RIGHTS:    "用户没有权限",
+	ERROR_FILE_UPLOAD:       "文件上传出错",
 }
 
 // Msg getter for errors

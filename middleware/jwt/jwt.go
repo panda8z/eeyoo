@@ -27,6 +27,7 @@ type KeyClaim struct {
 
 // GenerateToken generate a token
 func GenerateToken(username, password string) (string, int) {
+
 	claim := KeyClaim{
 		username,
 		password,
@@ -35,7 +36,7 @@ func GenerateToken(username, password string) (string, int) {
 			Issuer:    "ginblog",
 		},
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claim)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
 	tokenStr, err := token.SignedString(JwtKey)
 	if err != nil {
 		return "", errors.ERROR
@@ -67,6 +68,7 @@ func Jwt() gin.HandlerFunc {
 		tokenStr := c.Request.Header.Get("Authorization")
 		if tokenStr == "" {
 			code = errors.ERROR_TOKEN_NOT_EXIST
+			c.Abort()
 		}
 
 		checkStr := strings.SplitN(tokenStr, " ", 2)
