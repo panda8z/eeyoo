@@ -3,7 +3,7 @@ package v1
 import (
 	"net/http"
 
-	middleware "gitee.com/panda8xy/gin-blog/middleware/jwt"
+	"gitee.com/panda8xy/gin-blog/middleware"
 	"gitee.com/panda8xy/gin-blog/model"
 	"gitee.com/panda8xy/gin-blog/utils/errors"
 	"github.com/gin-gonic/gin"

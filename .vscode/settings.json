@@ -13,5 +13,6 @@
             "server": "localhost",
             "username": "root"
         }
-    ]
+    ],
+    "commentTranslate.targetLanguage": "zh-CN"
 }

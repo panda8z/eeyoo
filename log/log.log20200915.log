@@ -1,0 +1,1 @@
+time="2020-09-15 17:52:38" level=info Agent=PostmanRuntime/7.26.5 DataSize=224 HostName=PandaMac-2.local IP="::1" Method=POST SpendTime="150 ms" Status=200 URL=/api/v1/login

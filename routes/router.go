@@ -2,7 +2,7 @@ package routes
 
 import (
 	v1 "gitee.com/panda8xy/gin-blog/api/v1"
-	middleware "gitee.com/panda8xy/gin-blog/middleware/jwt"
+	"gitee.com/panda8xy/gin-blog/middleware"
 	"gitee.com/panda8xy/gin-blog/utils"
 	"github.com/gin-gonic/gin"
 )
@@ -11,7 +11,10 @@ import (
 func InitRouter() {
 	gin.SetMode(utils.AppMode)
 
-	r := gin.Default()
+	r := gin.New()
+
+	r.Use(middleware.Logger())
+	r.Use(gin.Recovery())
 
 	authRouter := r.Group("api/v1")
 	authRouter.Use(middleware.Jwt())
