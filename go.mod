@@ -5,7 +5,9 @@ go 1.14
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.6.3
-	github.com/go-playground/validator/v10 v10.3.0 // indirect
+	github.com/go-playground/locales v0.13.0
+	github.com/go-playground/universal-translator v0.17.0
+	github.com/go-playground/validator/v10 v10.3.0
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/jinzhu/gorm v1.9.16
@@ -35,5 +37,6 @@ replace (
 	gitee.com/panda8xy/gin-blog/upload => ./upload
 	gitee.com/panda8xy/gin-blog/utils => ./utils
 	gitee.com/panda8xy/gin-blog/utils/errors => ./utils/errors
+	gitee.com/panda8xy/gin-blog/utils/validate => ./utils/validate
 	gitee.com/panda8xy/gin-blog/web => ./web
 )

@@ -1,12 +1,12 @@
 package v1
 
 import (
-	"log"
 	"net/http"
 	"strconv"
 
 	"gitee.com/panda8xy/gin-blog/model"
 	"gitee.com/panda8xy/gin-blog/utils/errors"
+	"gitee.com/panda8xy/gin-blog/utils/validate"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,8 +19,15 @@ func UserExisted(c *gin.Context) {
 func AddUser(c *gin.Context) {
 	var user model.User
 	_ = c.ShouldBindJSON(&user)
-	log.Println(user)
-	code := model.CheckUsername(user.Username)
+	msg, code := validate.Validate(&user)
+	if code != errors.SUCCESS {
+		c.JSON(http.StatusOK, gin.H{
+			"status": code,
+			"msg":    msg,
+		})
+		return
+	}
+	code = model.CheckUsername(user.Username)
 	if code == errors.SUCCESS {
 		model.CreateUser(&user)
 	}
@@ -31,7 +38,6 @@ func AddUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,
-		"data":   user,
 		"msg":    errors.Msg(code),
 	})
 }
