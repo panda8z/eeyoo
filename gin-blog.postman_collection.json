@@ -1,0 +1,894 @@
+{
+	"info": {
+		"_postman_id": "76cd0fcd-6451-475d-bdd5-02421525a0c8",
+		"name": "gin-blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"panda\",\n    \"password\": \"123456\",\n    \"role\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{v1}}user/add",
+							"host": [
+								"{{v1}}user"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add user ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"panda\",\n    \"password\": \"123456\",\n    \"role\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/api/v1/user/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"add"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Sep 2020 04:40:05 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "200"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"ID\": 1,\n        \"CreatedAt\": \"2020-09-07T12:40:05.376616+08:00\",\n        \"UpdatedAt\": \"2020-09-07T12:40:05.376616+08:00\",\n        \"DeletedAt\": null,\n        \"username\": \"panda\",\n        \"password\": \"123456\",\n        \"role\": 0\n    },\n    \"msg\": \"OK\",\n    \"status\": 200\n}"
+						},
+						{
+							"name": "Add user role  =1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"panda\",\n    \"password\": \"123456\",\n    \"role\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{v1}}user/add",
+									"host": [
+										"{{v1}}user"
+									],
+									"path": [
+										"add"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 16 Sep 2020 01:39:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"角色必须大于或等于2\",\n    \"status\": 500\n}"
+						},
+						{
+							"name": "Add user role = 0",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"panda\",\n    \"password\": \"123456\",\n    \"role\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{v1}}user/add",
+									"host": [
+										"{{v1}}user"
+									],
+									"path": [
+										"add"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 16 Sep 2020 01:40:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"角色为必填字段\",\n    \"status\": 500\n}"
+						}
+					]
+				},
+				{
+					"name": "GetUserList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}users?pageSize=20&pageNum=1",
+							"host": [
+								"{{v1}}users"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "pageNum",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetUserList OK ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/api/v1/users?pageSize=20&pageNum=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "20"
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Sep 2020 04:54:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"ID\": 1,\n            \"CreatedAt\": \"2020-09-07T12:40:05+08:00\",\n            \"UpdatedAt\": \"2020-09-07T12:40:05+08:00\",\n            \"DeletedAt\": null,\n            \"username\": \"panda\",\n            \"password\": \"123456\",\n            \"role\": 0\n        }\n    ],\n    \"msg\": \"OK\",\n    \"status\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "GetUserByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}users?pageSize=20&pageNum=1",
+							"host": [
+								"{{v1}}users"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "pageNum",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}user/1",
+							"host": [
+								"{{v1}}user"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"panda1\",\n    \"password\": \"123456\",\n    \"role\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{v1}}user/1",
+							"host": [
+								"{{v1}}user"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "Add cate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"go\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{v1}}cate/add",
+							"host": [
+								"{{v1}}cate"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add user ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"panda\",\n    \"password\": \"123456\",\n    \"role\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/api/v1/user/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"add"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Sep 2020 04:40:05 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "200"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"ID\": 1,\n        \"CreatedAt\": \"2020-09-07T12:40:05.376616+08:00\",\n        \"UpdatedAt\": \"2020-09-07T12:40:05.376616+08:00\",\n        \"DeletedAt\": null,\n        \"username\": \"panda\",\n        \"password\": \"123456\",\n        \"role\": 0\n    },\n    \"msg\": \"OK\",\n    \"status\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "GetCateList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}cates?pageSize=20&pageNum=1",
+							"host": [
+								"{{v1}}cates"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "20",
+									"description": "每页数量"
+								},
+								{
+									"key": "pageNum",
+									"value": "1",
+									"description": "页码"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetUserList OK ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/api/v1/users?pageSize=20&pageNum=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "20"
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Sep 2020 04:54:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"ID\": 1,\n            \"CreatedAt\": \"2020-09-07T12:40:05+08:00\",\n            \"UpdatedAt\": \"2020-09-07T12:40:05+08:00\",\n            \"DeletedAt\": null,\n            \"username\": \"panda\",\n            \"password\": \"123456\",\n            \"role\": 0\n        }\n    ],\n    \"msg\": \"OK\",\n    \"status\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "GetCateByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}cate/1",
+							"host": [
+								"{{v1}}cate"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCate",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}cate/2",
+							"host": [
+								"{{v1}}cate"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditCate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"hehe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{v1}}cate/1",
+							"host": [
+								"{{v1}}cate"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "Add Article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"第33篇文章标题\",\n    \"cid\": 5,\n    \"desc\": \"第33篇文章\",\n    \"content\": \"疯疯了了第33篇文章第33篇文章第33篇文章第33篇文章第33篇文章第33篇文章第33篇文章第33篇文章第33篇文章第33篇文章\",\n    \"img\": \"1111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{v1}}article/add",
+							"host": [
+								"{{v1}}article"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add user ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"panda\",\n    \"password\": \"123456\",\n    \"role\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/api/v1/user/add",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"add"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Sep 2020 04:40:05 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "200"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"ID\": 1,\n        \"CreatedAt\": \"2020-09-07T12:40:05.376616+08:00\",\n        \"UpdatedAt\": \"2020-09-07T12:40:05.376616+08:00\",\n        \"DeletedAt\": null,\n        \"username\": \"panda\",\n        \"password\": \"123456\",\n        \"role\": 0\n    },\n    \"msg\": \"OK\",\n    \"status\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "GetArtList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}article/list?pageSize=20&pageNum=1",
+							"host": [
+								"{{v1}}article"
+							],
+							"path": [
+								"list"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "20",
+									"description": "每页数量"
+								},
+								{
+									"key": "pageNum",
+									"value": "1",
+									"description": "页码"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetUserList OK ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/api/v1/users?pageSize=20&pageNum=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "20"
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Sep 2020 04:54:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"ID\": 1,\n            \"CreatedAt\": \"2020-09-07T12:40:05+08:00\",\n            \"UpdatedAt\": \"2020-09-07T12:40:05+08:00\",\n            \"DeletedAt\": null,\n            \"username\": \"panda\",\n            \"password\": \"123456\",\n            \"role\": 0\n        }\n    ],\n    \"msg\": \"OK\",\n    \"status\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "GetArtByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}article/info/5s",
+							"host": [
+								"{{v1}}article"
+							],
+							"path": [
+								"info",
+								"5s"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetArtByCateID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}article/cate/6",
+							"host": [
+								"{{v1}}article"
+							],
+							"path": [
+								"cate",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteArticle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{v1}}article/1",
+							"host": [
+								"{{v1}}article"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditArticle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"1111\",\n    \"cid\": 2,\n    \"desc\": \"1111\",\n    \"content\": \"1111\",\n    \"img\": \"111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{v1}}article/1",
+							"host": [
+								"{{v1}}article"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "52007ae7-1260-4b3a-960b-ee91a28c9f6b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce7c65dc-9360-47d1-8142-4c140bf3e811",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "upload",
+			"item": [
+				{
+					"name": "upload file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/zcj/Downloads/3o9v21qjlsx41.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{v1}}upload/",
+							"host": [
+								"{{v1}}upload"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4f845e8-544e-4071-90fd-a442f9722515",
+						"exec": [
+							"    var jsonData = pm.response.json();",
+							"pm.environment.set(\"Token\", jsonData.data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"123456\",\n    \"username\": \"panda\",\n    \"role\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{v1}}login/",
+					"host": [
+						"{{v1}}login"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

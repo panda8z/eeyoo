@@ -1,36 +1,40 @@
-#  Blog By Gin
+# Blog By Gin
 
-#### Description
-{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
+## Description
 
-#### Software Architecture
-Software architecture description
+A part of Article-MicroServiece, consist by Server, WebBacken, WebFrount and Flutter APP.
+Provid user register , management and article post , management.
 
-#### Installation
+Server:
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+- Mysql DB
+- Splited logs
+- cors
+- validation
+- ini config
+- gin routers
+- jwt
 
-#### Instructions
+## Software Architecture
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+D-F-S Arc, server use MVC.
+web backen use Vue + AntDesign.
+web froutn use  Vue + ElementUI.
 
-#### Contribution
+## Contribution
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+Apply git-flow
 
+1. Fork the repository
+2. Create Feat_xxx branch
+3. Commit your code
+4. Create Pull Request
 
-#### Gitee Feature
+## Gitee Feature
 
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
+2. Gitee blog [blog.gitee.com](https://blog.gitee.com)
+3. Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
+4. The most valuable open source project [GVP](https://gitee.com/gvp)
+5. The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
+6. The most popular members [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
