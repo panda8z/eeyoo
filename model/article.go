@@ -60,15 +60,16 @@ func ArticleInfoByID(id int) (Article, int) {
 }
 
 // ArticleList get art list in pageable
-func ArticleList(pageSize int, pageNum int) ([]Article, int) {
+func ArticleList(pageSize int, pageNum int) ([]Article, int, int) {
 	// SELECT * FROM `article`  WHERE `article`.`deleted_at` IS NULL LIMIT 20 OFFSET 0
 	// SELECT * FROM `category`  WHERE `category`.`deleted_at` IS NULL AND ((`id` IN (5)))
 	var arts []Article
-	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+	var total int
+	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Count(total).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, errors.ERROR
+		return nil, 0, errors.ERROR
 	}
-	return arts, errors.SUCCESS
+	return arts, total, errors.SUCCESS
 }
 
 // SoftDeletArticle delete art softy

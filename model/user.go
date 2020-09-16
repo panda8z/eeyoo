@@ -51,14 +51,14 @@ func CreateUser(user *User) int {
 
 // GetUserList get user list by pageable
 // SELECT * FROM `user`  WHERE `user`.`deleted_at` IS NULL LIMIT 20 OFFSET 0
-func GetUserList(pageSize int, pageNum int) []User {
+func GetUserList(pageSize int, pageNum int) ([]User, int) {
 	var users []User
-
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).Error
+	var total int
+	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).Count(total).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil
+		return nil, 0
 	}
-	return users
+	return users, total
 }
 
 // SoftDeletUser delete user softy

@@ -1,0 +1,4 @@
+time="2020-09-16 09:38:08" level=info Agent=PostmanRuntime/7.26.5 DataSize=44 HostName=PandaMac-2.local IP="::1" Method=POST SpendTime="1 ms" Status=200 URL=/api/v1/user/add
+time="2020-09-16 09:39:14" level=info Agent=PostmanRuntime/7.26.5 DataSize=44 HostName=PandaMac-2.local IP="::1" Method=POST SpendTime="1 ms" Status=200 URL=/api/v1/user/add
+time="2020-09-16 09:39:48" level=info Agent=PostmanRuntime/7.26.5 DataSize=51 HostName=PandaMac-2.local IP="::1" Method=POST SpendTime="1 ms" Status=200 URL=/api/v1/user/add
+time="2020-09-16 09:40:30" level=info Agent=PostmanRuntime/7.26.5 DataSize=44 HostName=PandaMac-2.local IP="::1" Method=POST SpendTime="1 ms" Status=200 URL=/api/v1/user/add

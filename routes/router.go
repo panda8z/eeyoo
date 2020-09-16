@@ -1,9 +1,12 @@
 package routes
 
 import (
+	"time"
+
 	v1 "gitee.com/panda8xy/gin-blog/api/v1"
 	"gitee.com/panda8xy/gin-blog/middleware"
 	"gitee.com/panda8xy/gin-blog/utils"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,6 +18,19 @@ func InitRouter() {
 
 	r.Use(middleware.Logger())
 	r.Use(gin.Recovery())
+	r.Use(cors.New(cors.Config{
+		// AllowOrigins:     []string{"https://foo.com"},
+		AllowAllOrigins: true,
+		AllowMethods:    []string{"*"},
+		// AllowMethods:     []string{"PUT", "PATCH"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length", "Authorization"},
+		AllowCredentials: true,
+		// AllowOriginFunc: func(origin string) bool {
+		// 	return origin == "https://github.com"
+		// },
+		MaxAge: 12 * time.Hour,
+	}))
 
 	authRouter := r.Group("api/v1")
 	authRouter.Use(middleware.Jwt())

@@ -70,11 +70,14 @@ func GetArticleList(c *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data, code := model.ArticleList(pageSize, pageNum)
+	data, total, code := model.ArticleList(pageSize, pageNum)
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,
-		"data":   data,
-		"msg":    errors.Msg(code),
+		"data": gin.H{
+			"list":  data,
+			"total": total,
+		},
+		"msg": errors.Msg(code),
 	})
 
 }

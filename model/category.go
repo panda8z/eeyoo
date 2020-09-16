@@ -44,14 +44,14 @@ func CreateCate(cate *Category) int {
 }
 
 // CategoryList get cate list in pageable
-func CategoryList(pageSize int, pageNum int) []Category {
+func CategoryList(pageSize int, pageNum int) ([]Category, int) {
 	var cates []Category
-
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&cates).Error
+	var total int
+	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&cates).Count(total).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil
+		return nil, 0
 	}
-	return cates
+	return cates, total
 }
 
 // SoftDeletCategory delete cate softy
