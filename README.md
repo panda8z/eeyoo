@@ -9,21 +9,21 @@
 
 ## 开发日志
 
-- [Section-1-Log](./Section-1-Log.md)
-- [Section-2-Log](./Section-2-Log.md)
-- [Section-3-Log](./Section-3-Log.md)
-- [Section-4-Log](./Section-4-Log.md)
-- [Section-5-Log](./Section-5-Log.md)
-- [Section-6-Log](./Section-6-Log.md)
-- [Section-7-Log](./Section-7-Log.md)
-- [Section-8-Log](./Section-8-Log.md)
-- [Section-9-Log](./Section-9-Log.md)
-- [Section-10-Log](./Section-10-Log.md)
-- [Section-11-Log](./Section-11-Log.md)
-- [Section-12-Log](./Section-12-Log.md)
-- [Section-13-Log](./Section-13-Log.md)
-- [Section-14-Log](./Section-14-Log.md)
-- [Section-15-Log](./Section-15-Log.md)
+- [Section-1-Log](./dev-logsSection-1-Log.md)
+- [Section-2-Log](./dev-logsSection-2-Log.md)
+- [Section-3-Log](./dev-logsSection-3-Log.md)
+- [Section-4-Log](./dev-logsSection-4-Log.md)
+- [Section-5-Log](./dev-logsSection-5-Log.md)
+- [Section-6-Log](./dev-logsSection-6-Log.md)
+- [Section-7-Log](./dev-logsSection-7-Log.md)
+- [Section-8-Log](./dev-logsSection-8-Log.md)
+- [Section-9-Log](./dev-logsSection-9-Log.md)
+- [Section-10-Log](/dev-logs/Section-10-Log.md)
+- [Section-11-Log](/dev-logs/Section-11-Log.md)
+- [Section-12-Log](/dev-logs/Section-12-Log.md)
+- [Section-13-Log](/dev-logs/Section-13-Log.md)
+- [Section-14-Log](/dev-logs/Section-14-Log.md)
+- [Section-15-Log](/dev-logs/Section-15-Log.md)
 
 ## 介绍
 
@@ -43,8 +43,8 @@ Server端功能:
 ## 软件架构
 
 典型的前后端分离架构, server 端代码用 MVC 组织.
-web后端代码使用 Vue + AntDesign 组织.
-web前端代码使用 Vue + ElementUI 组织.
+web后端代码使用 AntDesign Pro 组织.
+web前端代码使用 ReactJs + GatsbyJs 组织.
 
 ## 参与贡献
 
