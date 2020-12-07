@@ -13,7 +13,7 @@ type User struct {
 	gorm.Model
 	Username string `gorm:"type:varchar(20)" json:"username" validate:"required,min=4,max=12" label:"用户名"`
 	Password string `gorm:"type:varchar(20)" json:"password" validate:"required,min=6,max=22" label:"密码"`
-	Role     int    `gorm:"type:int;DEFAULT:2" json:"role" validate:"required,gte=2" label:"角色"`
+	Role     int    `gorm:"type:int;DEFAULT:2" json:"role" `
 }
 
 // CheckUsername  check username is existed
@@ -104,9 +104,9 @@ func CheckLogin(username, password string) int {
 		return errors.ERROR_PASSWORD_WRONG
 	}
 
-	if user.Role != 1 {
-		return errors.ERROR_USER_NO_RIGHTS
-	}
+	// if user.Role != 1 {
+	// 	return errors.ERROR_USER_NO_RIGHTS
+	// }
 
 	return errors.SUCCESS
 }
