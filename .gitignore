@@ -13,4 +13,4 @@
 
 # build 
 gin-blog
-log/log.log
+log/*
