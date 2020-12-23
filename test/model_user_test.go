@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"gitee.com/panda8xy/gin-blog/utils"
+	"github.com/panda8z/eeyoo/utils"
 )
 
 func init() {

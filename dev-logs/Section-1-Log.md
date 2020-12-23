@@ -20,7 +20,7 @@ git checkout -b develop origin/develop
 
 ## 1.1 init go mod
 
-`go mod init gitee.com/panda8xy/gin-blog`
+`go mod init github.com/panda8z/eeyoo`
 
 ## 1.2 add gin
 
@@ -143,7 +143,7 @@ package routes
 import (
   "net/http"
 
-  "gitee.com/panda8xy/gin-blog/utils"
+  "github.com/panda8z/eeyoo/utils"
   "github.com/gin-gonic/gin"
 )
 
@@ -174,7 +174,7 @@ func InitRouter() {
 package main
 
 import (
-    "gitee.com/panda8xy/gin-blog/routes"
+    "github.com/panda8z/eeyoo/routes"
 )
 
 func main() {

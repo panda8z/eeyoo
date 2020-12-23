@@ -10,8 +10,8 @@ import (
   "net/http"
   "strconv"
 
-  "gitee.com/panda8xy/gin-blog/model"
-  "gitee.com/panda8xy/gin-blog/utils/errors"
+  "github.com/panda8z/eeyoo/model"
+  "github.com/panda8z/eeyoo/utils/errors"
   "github.com/gin-gonic/gin"
 )
 
@@ -124,7 +124,7 @@ package model
 import (
   "log"
 
-  "gitee.com/panda8xy/gin-blog/utils/errors"
+  "github.com/panda8z/eeyoo/utils/errors"
   "github.com/jinzhu/gorm"
 )
 

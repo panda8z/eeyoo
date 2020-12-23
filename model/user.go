@@ -3,8 +3,8 @@ package model
 import (
 	"log"
 
-	"gitee.com/panda8xy/gin-blog/utils"
-	"gitee.com/panda8xy/gin-blog/utils/errors"
+	"github.com/panda8z/eeyoo/utils"
+	"github.com/panda8z/eeyoo/utils/errors"
 	"github.com/jinzhu/gorm"
 )
 

@@ -26,7 +26,7 @@ import (
     "log"
     "time"
 
-    "gitee.com/panda8xy/gin-blog/utils"
+    "github.com/panda8z/eeyoo/utils"
     _ "github.com/go-sql-driver/mysql"
     "github.com/jinzhu/gorm"
 )
@@ -141,8 +141,8 @@ type Article struct {
 package main
 
 import (
-    "gitee.com/panda8xy/gin-blog/model"
-    "gitee.com/panda8xy/gin-blog/routes"
+    "github.com/panda8z/eeyoo/model"
+    "github.com/panda8z/eeyoo/routes"
 )
 
 func main() {

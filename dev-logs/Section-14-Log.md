@@ -54,7 +54,7 @@ package validate
 import (
   "fmt"
 
-  "gitee.com/panda8xy/gin-blog/utils/errors"
+  "github.com/panda8z/eeyoo/utils/errors"
   "github.com/go-playground/locales/zh_Hans_CN"
   trans "github.com/go-playground/universal-translator"
   "github.com/go-playground/validator/v10"

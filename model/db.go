@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"gitee.com/panda8xy/gin-blog/utils"
+	"github.com/panda8z/eeyoo/utils"
 	// mysql driver
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"

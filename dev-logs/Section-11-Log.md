@@ -6,9 +6,9 @@
 package routes
 
 import (
-  v1 "gitee.com/panda8xy/gin-blog/api/v1"
-  middleware "gitee.com/panda8xy/gin-blog/middleware/jwt"
-  "gitee.com/panda8xy/gin-blog/utils"
+  v1 "github.com/panda8z/eeyoo/api/v1"
+  middleware "github.com/panda8z/eeyoo/middleware/jwt"
+  "github.com/panda8z/eeyoo/utils"
   "github.com/gin-gonic/gin"
 )
 
@@ -71,9 +71,9 @@ package v1
 import (
   "net/http"
 
-  middleware "gitee.com/panda8xy/gin-blog/middleware/jwt"
-  "gitee.com/panda8xy/gin-blog/model"
-  "gitee.com/panda8xy/gin-blog/utils/errors"
+  middleware "github.com/panda8z/eeyoo/middleware/jwt"
+  "github.com/panda8z/eeyoo/model"
+  "github.com/panda8z/eeyoo/utils/errors"
   "github.com/gin-gonic/gin"
 )
 

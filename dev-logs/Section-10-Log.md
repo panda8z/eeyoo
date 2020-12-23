@@ -29,8 +29,8 @@ import (
   "strings"
   "time"
 
-  "gitee.com/panda8xy/gin-blog/utils"
-  "gitee.com/panda8xy/gin-blog/utils/errors"
+  "github.com/panda8z/eeyoo/utils"
+  "github.com/panda8z/eeyoo/utils/errors"
   "github.com/dgrijalva/jwt-go"
   "github.com/gin-gonic/gin"
 )

@@ -93,8 +93,8 @@ package routes
 import (
 	"net/http"
 
-	v1 "gitee.com/panda8xy/gin-blog/api/v1"
-	"gitee.com/panda8xy/gin-blog/utils"
+	v1 "github.com/panda8z/eeyoo/api/v1"
+	"github.com/panda8z/eeyoo/utils"
 	"github.com/gin-gonic/gin"
 )
 

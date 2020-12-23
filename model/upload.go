@@ -4,8 +4,8 @@ import (
 	"context"
 	"mime/multipart"
 
-	"gitee.com/panda8xy/gin-blog/utils"
-	"gitee.com/panda8xy/gin-blog/utils/errors"
+	"github.com/panda8z/eeyoo/utils"
+	"github.com/panda8z/eeyoo/utils/errors"
 	"github.com/qiniu/api.v7/v7/auth/qbox"
 	"github.com/qiniu/api.v7/v7/storage"
 )

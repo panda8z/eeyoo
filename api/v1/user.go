@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"gitee.com/panda8xy/gin-blog/model"
-	"gitee.com/panda8xy/gin-blog/utils/errors"
-	"gitee.com/panda8xy/gin-blog/utils/validate"
+	"github.com/panda8z/eeyoo/model"
+	"github.com/panda8z/eeyoo/utils/errors"
+	"github.com/panda8z/eeyoo/utils/validate"
 	"github.com/gin-gonic/gin"
 )
 

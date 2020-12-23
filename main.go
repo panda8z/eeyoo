@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"gitee.com/panda8xy/gin-blog/model"
-	"gitee.com/panda8xy/gin-blog/routes"
+	"github.com/panda8z/eeyoo/model"
+	"github.com/panda8z/eeyoo/routes"
 )
 
 func main() {
-	os.Setenv("GinBlogConfigFile", "/Users/zcj/panda/git4me/gin-blog/config/config.ini")
+	os.Setenv("GinBlogConfigFile", "./config/config.ini")
 
 	model.InitDb()
 	routes.InitRouter()

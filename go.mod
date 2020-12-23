@@ -1,4 +1,4 @@
-module gitee.com/panda8xy/gin-blog
+module github.com/panda8z/eeyoo
 
 go 1.14
 
@@ -36,13 +36,13 @@ require (
 )
 
 replace (
-	gitee.com/panda8xy/gin-blog/api => ./api
-	gitee.com/panda8xy/gin-blog/middleware => ./middleware
-	gitee.com/panda8xy/gin-blog/model => ./model
-	gitee.com/panda8xy/gin-blog/routes => ./routes
-	gitee.com/panda8xy/gin-blog/upload => ./upload
-	gitee.com/panda8xy/gin-blog/utils => ./utils
-	gitee.com/panda8xy/gin-blog/utils/errors => ./utils/errors
-	gitee.com/panda8xy/gin-blog/utils/validate => ./utils/validate
-	gitee.com/panda8xy/gin-blog/web => ./web
+	github.com/panda8z/eeyoo/api => ./api
+	github.com/panda8z/eeyoo/middleware => ./middleware
+	github.com/panda8z/eeyoo/model => ./model
+	github.com/panda8z/eeyoo/routes => ./routes
+	github.com/panda8z/eeyoo/upload => ./upload
+	github.com/panda8z/eeyoo/utils => ./utils
+	github.com/panda8z/eeyoo/utils/errors => ./utils/errors
+	github.com/panda8z/eeyoo/utils/validate => ./utils/validate
+	github.com/panda8z/eeyoo/web => ./web
 )
