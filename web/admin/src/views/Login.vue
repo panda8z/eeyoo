@@ -1,6 +1,8 @@
 <template>
   <div class="container">
+    <!-- 登录框 -->
     <div class="loginBox">
+      <!-- 登录信息表单 -->
       <a-form-model
         layout="horizontal"
         ref="loginFormRef"
@@ -8,11 +10,9 @@
         :model="formdata"
         :rules="rules"
       >
+        <!-- 用户名 -->
         <a-form-model-item prop="username">
-          <a-input
-            v-model="formdata.username"
-            placeholder="请输入用户名"
-          >
+          <a-input v-model="formdata.username" placeholder="请输入用户名">
             <a-icon
               slot="prefix"
               type="user"
@@ -21,6 +21,7 @@
           </a-input>
         </a-form-model-item>
 
+        <!-- 密码 -->
         <a-form-model-item prop="password">
           <a-input
             v-model="formdata.password"
@@ -34,7 +35,7 @@
             />
           </a-input>
         </a-form-model-item>
-
+        <!-- 登录，取消按钮 -->
         <a-form-model-item class="loginBoxBtns">
           <a-button type="primary" class="loginBtn" @click="login()"
             >Login</a-button
