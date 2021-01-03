@@ -55,7 +55,7 @@ func GenerateToken(username, password string) (string, int) {
     password,
     jwt.StandardClaims{
       ExpiresAt: time.Now().Add(10 * time.Hour).Unix(),
-      Issuer:    "ginblog",
+      Issuer:    "eeyoo",
     },
   }
   token := jwt.NewWithClaims(jwt.SigningMethodES256, claim)

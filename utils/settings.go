@@ -25,7 +25,7 @@ var (
 
 func init() {
 	// file, err := ini.Load("./config/config.ini")
-	os.Setenv("CONFIG_FILE", "/Users/zcj/panda/git4me/gin-blog/config/config.ini")
+	os.Setenv("CONFIG_FILE", "./config/config.ini")
 
 	file, err := ini.Load(os.Getenv("CONFIG_FILE"))
 	if err != nil {
@@ -54,7 +54,7 @@ func loadDatabase(file *ini.File) {
 	DbPort = file.Section("server").Key("DbPort").MustString("3307")
 	DbUser = file.Section("server").Key("DbUser").MustString("root")
 	DbPassword = file.Section("server").Key("DbPassword").MustString("123456")
-	DbName = file.Section("server").Key("DbName").MustString("ginblog")
+	DbName = file.Section("server").Key("DbName").MustString("eeyoo")
 }
 
 func loadQiNiu(file *ini.File) {

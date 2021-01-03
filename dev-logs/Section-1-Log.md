@@ -12,7 +12,7 @@
 - set git-flow pattern
 
 ```bash
-git clone git@gitee.com:panda8xy/gin-blog.git
+git clone git@gitee.com:panda8xy/.git
 git fetch
 git pull
 git checkout -b develop origin/develop
@@ -74,7 +74,7 @@ DbHost = 127.0.0.1
 DbPort = 3307
 DbUser = root
 DbPassword = 123456
-DbName = ginblog
+DbName = eeyoo
 ```
 
 ## 1.7 add settings.go
@@ -125,7 +125,7 @@ func loadDatabase(file *ini.File) {
   DbPort = file.Section("server").Key("DbPort").MustString("3307")
   DbUser = file.Section("server").Key("DbUser").MustString("root")
   DbPassword = file.Section("server").Key("DbPassword").MustString("123456")
-  DbName = file.Section("server").Key("DbName").MustString("ginblog")
+  DbName = file.Section("server").Key("DbName").MustString("eeyoo")
 }
 
 ```
