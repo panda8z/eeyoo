@@ -1,4 +1,8 @@
-# admin
+# admin build with AntD-Vue
+
+
+[Ant Design of Vue - Ant Design Vue](https://antdv.com/docs/vue/introduce-cn/)
+
 
 ## Project setup
 ```
