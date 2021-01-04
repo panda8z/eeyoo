@@ -2,17 +2,47 @@
 
 ## Open MySQL Database and create database
 
+- MacOS
+- Bash
+- Docker
+- MySQL 5.7.32 (Docker image)
+
+####  Pull mysql image from DockerHub
+
+```bash
+docker pull mysql:5.7.32
+```
+#### Create dir for mysql containner
+```bash
+mkdir ～/Docker-Shadow/mysql5-7-32/conf \
+～/Docker-Shadow/mysql5-7-32/logs \
+～/Docker-Shadow/mysql5-7-32/data
+```
+
+#### Login MySQL 
+
 ```bash
 mysql -uroot -p
+
+```
+
+#### Create Database with utf8mb4 encode
+
+```mysql
 create database `eeyoo` character set utf8mb4 collate utf8mb4_unicode_ci;
-docker run 
--p 3306:3306 
---name mysql 
--v /root/mysql/conf:/etc/mysql/conf.d 
--v /root/mysql/logs:/logs 
--v /root/mysql/data:/var/lib/mysql 
--e MYSQL_ROOT_PASSWORD=123456 
--d mysql:5.7.32
+```
+
+#### Run a Docker Container for eeyoo
+
+```bash
+docker run \
+-p 3306:3306 \
+--name eeyooDB \
+-v ~/Docker-Shadow/mysql5-7-32/conf:/etc/mysql/conf.d \
+-v ~/Docker-Shadow/mysql5-7-32/logs:/logs \
+-v ~/Docker-Shadow/mysql5-7-32/data:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-d mysql:5.7.32 
 ```
 
 ## new models
