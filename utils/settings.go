@@ -24,10 +24,10 @@ var (
 )
 
 func init() {
-	// file, err := ini.Load("./config/config.ini")
 	os.Setenv("CONFIG_FILE", "./config/config.ini")
+	log.Println(os.Getenv("CONFIG_FILE"))
 
-	file, err := ini.Load(os.Getenv("CONFIG_FILE"))
+	file, err := ini.Load("./config/config.ini")
 	if err != nil {
 		log.Println(err.Error() + os.Getenv("CONFIG_FILE"))
 		log.Println("Config file not found or open it with error, pleas check src/config/config.ini ")
@@ -51,7 +51,7 @@ func loadServer(file *ini.File) {
 func loadDatabase(file *ini.File) {
 	Db = file.Section("server").Key("Db").MustString("mysql")
 	DbHost = file.Section("server").Key("DbHost").MustString("127.0.0.1")
-	DbPort = file.Section("server").Key("DbPort").MustString("3307")
+	DbPort = file.Section("server").Key("DbPort").MustString("3306")
 	DbUser = file.Section("server").Key("DbUser").MustString("root")
 	DbPassword = file.Section("server").Key("DbPassword").MustString("123456")
 	DbName = file.Section("server").Key("DbName").MustString("eeyoo")
