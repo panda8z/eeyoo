@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gin-gonic/gin"
 	"github.com/panda8z/eeyoo/model"
 	"github.com/panda8z/eeyoo/utils/errors"
 	"github.com/panda8z/eeyoo/utils/validate"
-	"github.com/gin-gonic/gin"
 )
 
 // UserExisted search user existed
@@ -46,14 +46,14 @@ func AddUser(c *gin.Context) {
 func GetUserList(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
-
+	username := c.Query("username")
 	if pageSize == 0 {
 		pageSize = -1
 	}
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data, total := model.GetUserList(pageSize, pageNum)
+	data, total := model.GetUserList(username, pageSize, pageNum)
 	code := errors.SUCCESS
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,
