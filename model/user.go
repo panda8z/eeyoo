@@ -3,9 +3,9 @@ package model
 import (
 	"log"
 
+	"github.com/jinzhu/gorm"
 	"github.com/panda8z/eeyoo/utils"
 	"github.com/panda8z/eeyoo/utils/errors"
-	"github.com/jinzhu/gorm"
 )
 
 // User user model in database and memory
@@ -51,13 +51,23 @@ func CreateUser(user *User) int {
 
 // GetUserList get user list by pageable
 // SELECT * FROM `user`  WHERE `user`.`deleted_at` IS NULL LIMIT 20 OFFSET 0
-func GetUserList(pageSize int, pageNum int) ([]User, int) {
+func GetUserList(username string, pageSize, pageNum int) ([]User, int64) {
 	var users []User
-	var total int
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).Count(total).Error
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, 0
+	var total int64
+	if username != "" {
+		db.Select(
+			"id,username,role").Where(
+			"username LIKE ?", username+"%").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users)
+
+		db.Model(&users).Where("username LIKE ?", username+"%").Count(&total)
 	}
+
+	db.Select("id,username,role").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users)
+	db.Model(&users).Count(&total)
+	// err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).Count(total).Error
+	// if err != nil && err != gorm.ErrRecordNotFound {
+	// 	return nil, 0
+	// }
 	return users, total
 }
 
