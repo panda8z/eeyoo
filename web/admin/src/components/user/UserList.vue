@@ -50,19 +50,14 @@
     <!-- 添加用户弹窗 -->
     <a-modal
       title="新增用户"
-      width="60%"
+      width="25%"
       closable
       destroyOnClose
       :visible="addUserVisible"
       @ok="addUserOk"
       @cancel="addUserCancle"
     >
-      <a-form-model
-        style="width: 300px"
-        ref="addUserModalRef"
-        :model="userInfo"
-        :rules="userRules"
-      >
+      <a-form-model ref="addUserModalRef" :model="userInfo" :rules="userRules">
         <!-- <a-form-model-item label="ID">
           <a-input v-model="userInfo.id" />
         </a-form-model-item> -->
@@ -91,19 +86,14 @@
     <!-- 编辑用户弹窗 -->
     <a-modal
       title="编辑用户"
-      width="60%"
+      width="25%"
       closable
       destroyOnClose
       :visible="editUserVisible"
       @ok="editUserOk"
       @cancel="editUserCancle"
     >
-      <a-form-model
-        style="width: 300px"
-        ref="editUserModalRef"
-        :model="userInfo"
-        :rules="userRules"
-      >
+      <a-form-model ref="editUserModalRef" :model="userInfo" :rules="userRules">
         <a-form-model-item label="ID">
           <a-input :disabled="true" v-model="userInfo.id" />
         </a-form-model-item>
@@ -118,12 +108,12 @@
         </a-form-model-item> -->
         <a-form-model-item label="是否为管理员">
           <a-select
-            default-value="2"
-            style="width: 120px"
+            :default-value="`${userInfo.role}`"
+            style="width: 60px"
             @change="handleAdminChange"
           >
-            <a-select-option key="1" value="1"> 是 </a-select-option>
-            <a-select-option key="2" value="2"> 否 </a-select-option>
+            <a-select-option value="1"> 是 </a-select-option>
+            <a-select-option value="2"> 否 </a-select-option>
           </a-select>
         </a-form-model-item>
       </a-form-model>
@@ -149,6 +139,13 @@ export default {
       visible: false,
       addUserVisible: false,
       editUserVisible: false,
+      defaultUserInfo: {
+        id: 0,
+        username: '',
+        password: '',
+        checkpwd: '',
+        role: 2
+      },
       userInfo: {
         id: 0,
         username: '',
@@ -220,7 +217,6 @@ export default {
   },
   methods: {
     handleTablePageChange(pagination, filters, sorter) {
-      console.log(pagination, filters, sorter)
       var pager = { ...this.pageOptions }
       pager.current = pagination.current
       pager.pageSize = pagination.pageSize
@@ -273,11 +269,13 @@ export default {
         this.addUserVisible = false
         this.$refs.addUserModalRef.resetFields()
         this.getUserList()
+        this.userInfo = { ...this.defaultUserInfo }
       })
     },
     addUserCancle() {
       this.$refs.addUserModalRef.resetFields()
       this.addUserVisible = false
+      this.userInfo = { ...this.defaultUserInfo }
     },
     editUser(actionData) {
       this.userInfo.id = actionData.ID
@@ -301,10 +299,12 @@ export default {
         this.$message.success('编辑用户成功！')
         this.editUserVisible = false
         this.$refs.editUserModalRef.resetFields()
+        this.userInfo = { ...this.defaultUserInfo }
         this.getUserList()
       })
     },
     editUserCancle() {
+      this.userInfo = { ...this.defaultUserInfo }
       this.$refs.editUserModalRef.resetFields()
       this.editUserVisible = false
     },
