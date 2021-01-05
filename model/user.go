@@ -27,15 +27,28 @@ func CheckUsername(name string) int {
 	return errors.SUCCESS
 }
 
+// 更新查询
+func CheckUpUser(id int, name string) (code int) {
+	var user User
+	db.Select("id, username").Where("username = ?", name).First(&user)
+	if user.ID == uint(id) {
+		return errors.SUCCESS
+	}
+	if user.ID > 0 {
+		return errors.ERROR_USERNAME_USED //1001
+	}
+	return errors.SUCCESS
+}
+
 // GetUsetByID search user with specified id
-func GetUsetByID(id int) (*User, error) {
+func GetUsetByID(id int) (error, *User) {
 	var user User
 	err := db.Where("id = ?", id).First(&user).Error
 	if err != nil {
 		log.Fatal(err.Error())
-		return nil, err
+		return err, nil
 	}
-	return &user, nil
+	return nil, &user
 }
 
 // CreateUser add a new user to database
@@ -60,14 +73,11 @@ func GetUserList(username string, pageSize, pageNum int) ([]User, int64) {
 			"username LIKE ?", username+"%").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users)
 
 		db.Model(&users).Where("username LIKE ?", username+"%").Count(&total)
+		return users, total
 	}
 
 	db.Select("id,username,role").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users)
 	db.Model(&users).Count(&total)
-	// err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).Count(total).Error
-	// if err != nil && err != gorm.ErrRecordNotFound {
-	// 	return nil, 0
-	// }
 	return users, total
 }
 
