@@ -75,23 +75,20 @@ func GetCateByID(c *gin.Context) {
 // EditCate edit cate info
 func EditCate(c *gin.Context) {
 	var cate model.Category
-	id, _ := strconv.Atoi(c.Query("id"))
+	id, _ := strconv.Atoi(c.Param("id"))
 	c.ShouldBindJSON(&cate)
 	code := model.CheckCateName(cate.Name)
-	if code == errors.SUCCESS {
-		model.UpdateCategory(id, &cate)
-	}
-
 	if code == errors.ERROR_CATEGORY_USED {
 		c.Abort()
+	}
+	if code == errors.SUCCESS {
+		model.UpdateCategoryName(id, &cate)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,
-		"data":   "",
 		"msg":    errors.Msg(code),
 	})
-
 }
 
 // DeleteCate delete cate

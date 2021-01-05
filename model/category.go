@@ -65,19 +65,13 @@ func SoftDeletCategory(id int) int {
 	return errors.SUCCESS
 }
 
-// UpdateCategory update cate info at name and role
-func UpdateCategory(id int, cate *Category) int {
-
+// UpdateCategoryName update cate info at name
+func UpdateCategoryName(id int, cate *Category) int {
 	uMap := map[string]interface{}{
 		"name": cate.Name,
 	}
-
-	code := CheckCateName(cate.Name)
-	if code == errors.ERROR_CATEGORY_USED {
-		return errors.ERROR_CATEGORY_USED
-	}
-
-	err := db.Model(&Category{}).Where("id = ?", id).Update(uMap).Error
+	// UPDATE `category` SET `name` = 'aaa1'  WHERE (id = 0)
+	err := db.Model(&cate).Where("id = ?", id).Updates(uMap).Error
 	if err != nil {
 		log.Println(err.Error())
 		log.Fatal(err.Error())
