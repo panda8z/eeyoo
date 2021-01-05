@@ -1,99 +1,118 @@
 package middleware
 
 import (
-	"log"
 	"net/http"
 	"strings"
 	"time"
 
-	"github.com/panda8z/eeyoo/utils"
-	"github.com/panda8z/eeyoo/utils/errors"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/panda8z/eeyoo/utils"
+	"github.com/panda8z/eeyoo/utils/errors"
 )
 
-// error code
-var code int
-
-// JwtKey define the secret key
 var JwtKey = []byte(utils.JwtKey)
 
-// KeyClaim define the claim
-type KeyClaim struct {
+type MyClaims struct {
 	Username string `json:"username"`
-	Password string `json:"password"`
 	jwt.StandardClaims
 }
 
-// GenerateToken generate a token
-func GenerateToken(username, password string) (string, int) {
-
-	claim := KeyClaim{
+// 生成token
+func SetToken(username string) (string, int) {
+	expireTime := time.Now().Add(10 * time.Hour)
+	SetClaims := MyClaims{
 		username,
-		password,
 		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(10 * time.Hour).Unix(),
-			Issuer:    "eeyoo",
+			ExpiresAt: expireTime.Unix(),
+			Issuer:    "ginblog",
 		},
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
-	tokenStr, err := token.SignedString(JwtKey)
+
+	reqClaim := jwt.NewWithClaims(jwt.SigningMethodHS256, SetClaims)
+	token, err := reqClaim.SignedString(JwtKey)
 	if err != nil {
 		return "", errors.ERROR
 	}
-	return tokenStr, errors.SUCCESS
+	return token, errors.SUCCESS
+
 }
 
-// Checktoken vertify the token
-func Checktoken(tokenStr string) (*KeyClaim, int) {
-	token, err := jwt.ParseWithClaims(tokenStr, &KeyClaim{}, func(token *jwt.Token) (interface{}, error) {
+// 验证token
+
+func CheckToken(token string) (*MyClaims, int) {
+	var claims MyClaims
+
+	setToken, err := jwt.ParseWithClaims(token, &claims, func(token *jwt.Token) (i interface{}, e error) {
 		return JwtKey, nil
 	})
+
 	if err != nil {
-		log.Fatal(err.Error())
-		return nil, errors.ERROR
+		if ve, ok := err.(*jwt.ValidationError); ok {
+			if ve.Errors&jwt.ValidationErrorMalformed != 0 {
+				return nil, errors.ERROR_TOKEN_WRONG
+			} else if ve.Errors&(jwt.ValidationErrorExpired|jwt.ValidationErrorNotValidYet) != 0 {
+				return nil, errors.ERROR_TOKEN_OUTTIME
+			} else {
+				return nil, errors.ERROR_TOKEN_TYPE_WRONG
+			}
+		}
 	}
-
-	if key, ok := token.Claims.(*KeyClaim); ok && token.Valid {
-		return key, errors.SUCCESS
+	if setToken != nil {
+		if key, ok := setToken.Claims.(*MyClaims); ok && setToken.Valid {
+			return key, errors.SUCCESS
+		} else {
+			return nil, errors.ERROR_TOKEN_WRONG
+		}
 	}
-
-	return nil, errors.ERROR
-
+	return nil, errors.ERROR_TOKEN_WRONG
 }
 
-// Jwt middleware for gin
-func Jwt() gin.HandlerFunc {
+// jwt中间件
+func JwtToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		tokenStr := c.Request.Header.Get("Authorization")
-		if tokenStr == "" {
+		var code int
+		tokenHeader := c.Request.Header.Get("Authorization")
+		if tokenHeader == "" {
 			code = errors.ERROR_TOKEN_NOT_EXIST
+			c.JSON(http.StatusOK, gin.H{
+				"status": code,
+				"msg":    errors.Msg(code),
+			})
 			c.Abort()
+			return
 		}
-
-		checkStr := strings.SplitN(tokenStr, " ", 2)
-
-		if len(checkStr) != 2 && checkStr[0] == "Beare" {
+		checkToken := strings.Split(tokenHeader, " ")
+		if len(checkToken) == 0 {
 			code = errors.ERROR_TOKEN_TYPE_WRONG
+			c.JSON(http.StatusOK, gin.H{
+				"status": code,
+				"msg":    errors.Msg(code),
+			})
 			c.Abort()
-		}
-		token, Ecode := Checktoken(checkStr[1])
-
-		if Ecode == errors.ERROR {
-			code = errors.ERROR_TOKEN_WRONG
-			c.Abort()
-		}
-
-		if time.Now().Unix() > token.ExpiresAt {
-			code = errors.ERROR_TOKEN_OUTTIME
-			c.Abort()
+			return
 		}
 
-		c.JSON(http.StatusOK, gin.H{
-			"status": code,
-			"msg":    errors.Msg(code),
-		})
-		c.Set("username", token.Username)
+		if len(checkToken) != 2 && checkToken[0] != "Bearer" {
+			code = errors.ERROR_TOKEN_TYPE_WRONG
+			c.JSON(http.StatusOK, gin.H{
+				"status": code,
+				"msg":    errors.Msg(code),
+			})
+			c.Abort()
+			return
+		}
+		key, tCode := CheckToken(checkToken[1])
+		if tCode != errors.SUCCESS {
+			code = tCode
+			c.JSON(http.StatusOK, gin.H{
+				"status": code,
+				"msg":    errors.Msg(code),
+			})
+			c.Abort()
+			return
+		}
+		c.Set("username", key)
 		c.Next()
 	}
 }
