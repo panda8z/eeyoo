@@ -26,6 +26,7 @@
           <a-input
             v-model="formdata.password"
             placeholder="请输入密码"
+            enter-button
             type="password"
           >
             <a-icon
@@ -72,7 +73,6 @@ export default {
   },
   methods: {
     resetForm() {
-      console.log(this)
       this.$refs.loginFormRef.resetFields()
     },
     login() {
@@ -82,7 +82,6 @@ export default {
             return this.$message.error('输入非法，请重新输入')
           }
           const { data: res } = await this.$http.post('login', this.formdata)
-          console.log(res)
           if (res.status === 200) {
             window.sessionStorage.setItem('token', res.data.token)
             this.$router.push('/admin')

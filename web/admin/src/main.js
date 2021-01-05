@@ -6,9 +6,12 @@ import './plugin/ant-design-vue-ui'
 import './assets/css/style.css'
 
 // config axios and detech to vue
-axios.defaults.baseURL = 'http://localhost:8081/api/v1'
+axios.defaults.baseURL = 'http://127.0.0.1:8081/api/v1'
+axios.interceptors.request.use(config => {
+  config.headers.Authorization = `Bearer ${window.sessionStorage.getItem('token')}`
+  return config
+})
 Vue.prototype.$http = axios
-
 Vue.config.productionTip = false
 new Vue({
   router,
