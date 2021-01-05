@@ -19,7 +19,7 @@ type MyClaims struct {
 }
 
 // 生成token
-func SetToken(username string) (string, int) {
+func GenerateToken(username string) (string, int) {
 	expireTime := time.Now().Add(10 * time.Hour)
 	SetClaims := MyClaims{
 		username,
@@ -39,7 +39,6 @@ func SetToken(username string) (string, int) {
 }
 
 // 验证token
-
 func CheckToken(token string) (*MyClaims, int) {
 	var claims MyClaims
 
@@ -69,7 +68,7 @@ func CheckToken(token string) (*MyClaims, int) {
 }
 
 // jwt中间件
-func JwtToken() gin.HandlerFunc {
+func Jwt() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var code int
 		tokenHeader := c.Request.Header.Get("Authorization")

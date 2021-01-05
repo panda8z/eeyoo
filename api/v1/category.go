@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gin-gonic/gin"
 	"github.com/panda8z/eeyoo/model"
 	"github.com/panda8z/eeyoo/utils/errors"
-	"github.com/gin-gonic/gin"
 )
 
 // AddCate add cate
@@ -54,7 +54,7 @@ func GetCategoryList(c *gin.Context) {
 
 }
 
-// GetCateByID search cate by id
+// GetCateByID search cate by id··
 func GetCateByID(c *gin.Context) {
 	code := errors.SUCCESS
 	msg := ""

@@ -1,10 +1,10 @@
 package routes
 
 import (
+	"github.com/gin-gonic/gin"
 	v1 "github.com/panda8z/eeyoo/api/v1"
 	"github.com/panda8z/eeyoo/middleware"
 	"github.com/panda8z/eeyoo/utils"
-	"github.com/gin-gonic/gin"
 )
 
 // InitRouter gin engine init and run

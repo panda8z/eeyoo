@@ -3,8 +3,8 @@ package model
 import (
 	"log"
 
-	"github.com/panda8z/eeyoo/utils/errors"
 	"github.com/jinzhu/gorm"
+	"github.com/panda8z/eeyoo/utils/errors"
 )
 
 // Category model
@@ -47,7 +47,9 @@ func CreateCate(cate *Category) int {
 func CategoryList(pageSize int, pageNum int) ([]Category, int) {
 	var cates []Category
 	var total int
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&cates).Count(total).Error
+
+	db.Model(&cates).Count(&total)
+	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&cates).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, 0
 	}

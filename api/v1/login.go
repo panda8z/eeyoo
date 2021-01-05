@@ -19,7 +19,7 @@ func Login(c *gin.Context) {
 	code = model.CheckLogin(user.Username, user.Password)
 
 	if code == errors.SUCCESS {
-		token, code = middleware.GenerateToken(user.Username, user.Password)
+		token, code = middleware.GenerateToken(user.Username)
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,

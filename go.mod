@@ -2,6 +2,19 @@ module github.com/panda8z/eeyoo
 
 go 1.14
 
+
+replace (
+	github.com/panda8z/eeyoo/api => ./api
+	github.com/panda8z/eeyoo/middleware => ./middleware
+	github.com/panda8z/eeyoo/model => ./model
+	github.com/panda8z/eeyoo/routes => ./routes
+	github.com/panda8z/eeyoo/upload => ./upload
+	github.com/panda8z/eeyoo/utils => ./utils
+	github.com/panda8z/eeyoo/utils/errors => ./utils/errors
+	github.com/panda8z/eeyoo/utils/validate => ./utils/validate
+	github.com/panda8z/eeyoo/web => ./web
+)
+
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
@@ -33,16 +46,4 @@ require (
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/ini.v1 v1.62.0
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-)
-
-replace (
-	github.com/panda8z/eeyoo/api => ./api
-	github.com/panda8z/eeyoo/middleware => ./middleware
-	github.com/panda8z/eeyoo/model => ./model
-	github.com/panda8z/eeyoo/routes => ./routes
-	github.com/panda8z/eeyoo/upload => ./upload
-	github.com/panda8z/eeyoo/utils => ./utils
-	github.com/panda8z/eeyoo/utils/errors => ./utils/errors
-	github.com/panda8z/eeyoo/utils/validate => ./utils/validate
-	github.com/panda8z/eeyoo/web => ./web
 )
