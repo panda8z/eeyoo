@@ -3,8 +3,8 @@ package model
 import (
 	"log"
 
-	"github.com/panda8z/eeyoo/utils/errors"
 	"github.com/jinzhu/gorm"
+	"github.com/panda8z/eeyoo/utils/errors"
 )
 
 // Article model
@@ -65,7 +65,8 @@ func ArticleList(pageSize int, pageNum int) ([]Article, int, int) {
 	// SELECT * FROM `category`  WHERE `category`.`deleted_at` IS NULL AND ((`id` IN (5)))
 	var arts []Article
 	var total int
-	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Count(total).Error
+	db.Model(&arts).Count(&total)
+	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, 0, errors.ERROR
 	}
