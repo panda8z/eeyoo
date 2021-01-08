@@ -82,10 +82,12 @@ export default {
             return this.$message.error('输入非法，请重新输入')
           }
           const { data: res } = await this.$http.post('login', this.formdata)
-          if (res.status === 200) {
-            window.sessionStorage.setItem('token', res.data.token)
-            this.$router.push('/admin')
+          if (res.status !== 200) {
+            return this.$message.error(res.msg)
           }
+          window.sessionStorage.setItem('token', res.data.token)
+          this.$router.push('/admin')
+          this.$message.success('登录成功！')
         }
       )
     }
