@@ -48,7 +48,7 @@ export default {
   methods: {
     jumpPage(item) {
       console.log(item)
-      this.$router.push('/admin/' + item.key).catch(err => err)
+      this.$router.push(`/admin/${item.key}`).catch(err => err)
     }
   }
 }
