@@ -38,14 +38,16 @@ func CreateArticle(art *Article) int {
 // }
 
 // ArticlesByCateID getter for articles with same Category ID
-func ArticlesByCateID(id int, pageSize int, pageNum int) (*[]Article, int) {
+func ArticlesByCateID(id int, pageSize int, pageNum int) (*[]Article, int32, int) {
 	var arts []Article
-	err := db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid = ?", id).First(&arts).Error
+	var total int32
+	db.Preload("Category").Model(&arts).Where("cid = ?", id).Count(&total)
+	err := db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid = ?", id).Find(&arts).Error
 	if err != nil {
 		log.Fatal(err.Error())
-		return nil, errors.ERROR_ARTICLE_NOT_EXIST
+		return nil, 0, errors.ERROR_CATEGORY_USED
 	}
-	return &arts, errors.SUCCESS
+	return &arts, total, errors.SUCCESS
 }
 
 // ArticleInfoByID getter for article with specified Article ID
@@ -60,16 +62,24 @@ func ArticleInfoByID(id int) (Article, int) {
 }
 
 // ArticleList get art list in pageable
-func ArticleList(pageSize int, pageNum int) ([]Article, int, int) {
-	// SELECT * FROM `article`  WHERE `article`.`deleted_at` IS NULL LIMIT 20 OFFSET 0
-	// SELECT * FROM `category`  WHERE `category`.`deleted_at` IS NULL AND ((`id` IN (5)))
+func ArticleList(title string, pageSize int, pageNum int) ([]Article, int, int) {
 	var arts []Article
 	var total int
-	db.Model(&arts).Count(&total)
-	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, 0, errors.ERROR
+
+	if title != "" {
+		db.Model(&arts).Where("title LIKE ?", title+"%").Count(&total)
+		err := db.Preload("Category").Where("title LIKE ?", title+"%").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+		if err != nil && err != gorm.ErrRecordNotFound {
+			return nil, 0, errors.ERROR
+		}
+	} else {
+		db.Model(&arts).Count(&total)
+		err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+		if err != nil && err != gorm.ErrRecordNotFound {
+			return nil, 0, errors.ERROR
+		}
 	}
+
 	return arts, total, errors.SUCCESS
 }
 

@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gin-gonic/gin"
 	"github.com/panda8z/eeyoo/model"
 	"github.com/panda8z/eeyoo/utils/errors"
-	"github.com/gin-gonic/gin"
 )
 
 // AddArticle article add
@@ -48,19 +48,24 @@ func GetArticlesByCateID(c *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	art, code := model.ArticlesByCateID(id, pageSize, pageNum)
-	if code == errors.ERROR_ARTICLE_NOT_EXIST {
+	art, total, code := model.ArticlesByCateID(id, pageSize, pageNum)
+
+	if code != errors.SUCCESS {
 		c.Abort()
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,
-		"data":   *art,
-		"msg":    errors.Msg(code),
+		"data": gin.H{
+			"list":  art,
+			"total": total,
+		},
+		"msg": errors.Msg(code),
 	})
 }
 
 // GetArticleList search article list in pageable
 func GetArticleList(c *gin.Context) {
+	title := c.Query("title")
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 
@@ -70,7 +75,7 @@ func GetArticleList(c *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data, total, code := model.ArticleList(pageSize, pageNum)
+	data, total, code := model.ArticleList(title, pageSize, pageNum)
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,
 		"data": gin.H{
