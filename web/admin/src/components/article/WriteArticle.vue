@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3>{{ id ? "编辑文章" : "新增文章" }}</h3>
     <a-card>
-      <a-form-model :model="articleInfo">
+      <h3>{{ id ? "编辑文章" : "新增文章" }}</h3>
+      <a-form-model :model="articleInfo" ref="articleForm">
         <!-- 文章标题 -->
         <a-form-model-item label="文章标题">
           <a-input style="width: 300px" v-model="articleInfo.title" />
@@ -35,8 +35,9 @@
             :headers="headers"
             listType="picture"
             :default-file-list="uploadFileList"
+            @change="uploadImgs"
           >
-            <a-button> <a-icon type="upload" /> Upload </a-button>
+            <a-button> <a-icon type="upload" /> {{ "上传图片" }} </a-button>
           </a-upload>
         </a-form-model-item>
         <!-- 文章内容 -->
@@ -45,7 +46,7 @@
         </a-form-model-item>
         <!-- 提交和取消按钮 -->
         <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-          <a-button type="primary" @click="onSubmit(articaleInfo.ID)">
+          <a-button type="primary" @click="onSubmit()">
             <span>{{ id ? "更新" : "提交" }}</span>
           </a-button>
           <a-button style="margin-left: 10px" @click="cancleAdd">
@@ -63,13 +64,24 @@ export default {
   props: ['id'],
   created() {
     console.log('写文章', this.id)
-    this.getArticleInfo()
+    if (this.id) {
+      this.getArticleInfo()
+    }
     this.getCategoryList()
+    this.headers = { Authorization: `Bearer ${window.sessionStorage.getItem('token')}` }
   },
   data() {
     return {
+      defaultArticleInfo: {
+        ID: undefined,
+        title: '',
+        cid: undefined,
+        desc: '',
+        content: '',
+        img: ''
+      },
       articleInfo: {
-        ID: 0,
+        ID: undefined,
         title: '',
         cid: undefined,
         desc: '',
@@ -87,7 +99,7 @@ export default {
       console.log(value)
       this.articleInfo.cid = value
     },
-    getArticleInfo(id) {
+    async getArticleInfo(id) {
       if (id) {
         // 根据ID获取文章信息
       } else {
@@ -100,14 +112,41 @@ export default {
       if (res.status !== 200) return this.$message.error(res.msg)
       this.categoryList = res.data.list
     },
-    onSubmit(id) {
-      if (id) {
-        // 有ID就 更新article
-      } else {
-        // 没ID就 新建article
+    uploadImgs(info) {
+      console.log(info)
+      if (info.file.status !== 'uploading') {
+
+      }
+      if (info.file.status === 'done') {
+        this.$message.success('图片上传成功')
+        const imgUrl = info.file.response.data.url
+        this.articleInfo.img = imgUrl
+      } else if (info.file.status === 'error') {
+        this.$message.error('图片上传失败')
       }
     },
-    cancleAdd() { }
+    async onSubmit() {
+      if (this.id) {
+        // 有ID就 更新article
+        this.articleInfo.ID = this.id
+        const { data: res } = await this.$http.put(`article/${this.id}`, this.articleInfo)
+        console.log('add article:', res)
+      } else {
+        // 没ID就 新建article
+        console.log(this.articleInfo)
+        const { data: res } = await this.$http.post('article/add', this.articleInfo)
+        console.log('add article:', res)
+        if (res.status !== 200) {
+          return this.$message.error('提交失败：' + res.msg)
+        }
+        this.$message.success('提交成功')
+        this.articleInfo = this.defaultArticleInfo
+        this.$refs.articleForm.resetFields()
+      }
+    },
+    cancleAdd() {
+      this.$refs.articleForm.resetFields()
+    }
   }
 }
 </script>

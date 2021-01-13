@@ -147,10 +147,10 @@ export default {
         title: '提示！',
         content: '确认删除此分类吗？删除操作无法恢复！',
         onOk: async () => {
-          const ret = await this.$http.delete(`cate/${cateID}`)
-          console.log(ret)
-          if (ret.status !== 200) {
-            this.$message.error(ret.error)
+          const { data: res } = await this.$http.delete(`cate/${cateID}`)
+          console.log(res)
+          if (res.status !== 200) {
+            this.$message.error(res.msg)
             return
           }
           this.$message.success('删除成功！')
