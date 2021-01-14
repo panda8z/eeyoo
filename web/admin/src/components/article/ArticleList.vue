@@ -17,7 +17,7 @@
         <a-col :span="4">
           <a-button
             type="primary"
-            @click="$router.push('/inadmin/writearticle')"
+            @click="$router.push('/admin/writearticle')"
             >新增</a-button
           >
         </a-col>
