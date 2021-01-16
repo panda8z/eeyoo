@@ -47,6 +47,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
+    <a-spin size="large" :spinning="spinning" />
   </div>
 </template>
 
@@ -55,6 +56,7 @@ export default {
 
   data() {
     return {
+      spinning: false,
       formdata: {
         username: '',
         password: ''
@@ -76,12 +78,14 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     login() {
+      this.spinning = true
       this.$refs.loginFormRef.validate(
         async valid => {
           if (!valid) {
             return this.$message.error('输入非法，请重新输入')
           }
           const { data: res } = await this.$http.post('login', this.formdata)
+          this.spinning = false
           if (res.status !== 200) {
             return this.$message.error(res.msg)
           }

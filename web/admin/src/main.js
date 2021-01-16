@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import './plugin/http'
 import './plugin/ant-design-vue-ui'
 import './assets/css/style.css'
+import './plugin/http'
 
 Vue.config.productionTip = false
 new Vue({

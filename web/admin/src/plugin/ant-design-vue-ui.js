@@ -15,7 +15,8 @@ import {
   ConfigProvider,
   Modal,
   Select,
-  Upload
+  Upload,
+  Spin
 } from 'ant-design-vue'
 
 Vue.prototype.$message = message // 语法糖挂载 提示消息toast 到prototype
@@ -35,3 +36,4 @@ Vue.use(ConfigProvider) // 多语言
 Vue.use(Modal) // 对话框
 Vue.use(Select) // 选择下拉框
 Vue.use(Upload) // 上传按钮
+Vue.use(Spin) // 加载中

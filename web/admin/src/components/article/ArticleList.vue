@@ -15,9 +15,7 @@
         </a-col>
         <!-- 添加文章按钮 -->
         <a-col :span="4">
-          <a-button
-            type="primary"
-            @click="$router.push('/admin/writearticle')"
+          <a-button type="primary" @click="$router.push('/admin/writearticle')"
             >新增</a-button
           >
         </a-col>
