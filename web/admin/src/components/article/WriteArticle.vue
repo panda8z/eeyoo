@@ -189,16 +189,17 @@ export default {
       this.$refs.articleForm.resetFields()
     },
     async uploadEditorImg(file) {
-      const { data: res } = await this.$http.post('/upload', { file })
-      console.log(res)
+      const data = new FormData()
+      const { data: res } = await this.$http.post('/upload', data, { headers: { 'Content-Type': 'multipart/form-data' } })
       if (res.status !== 200) return this.$message.error(res.msg)
-      return res.url
+      return res.data.url
     },
     $imgDel() { },
     $imgAdd(pos, file) {
       console.log(pos, file)
-      const url = this.uploadEditorImg(file)
-      this.$refs.md.$img2Url(pos, url)
+      this.uploadEditorImg(file).then((url) => {
+        this.$refs.md.$img2Url(pos, url)
+      })
     }
   }// methods
 }// export
