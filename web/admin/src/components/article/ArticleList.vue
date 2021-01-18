@@ -15,7 +15,7 @@
         </a-col>
         <!-- 添加文章按钮 -->
         <a-col :span="4">
-          <a-button type="primary" @click="$router.push('/admin/writearticle')"
+          <a-button type="primary" @click="$router.push('/writearticle')"
             >新增</a-button
           >
         </a-col>
@@ -158,7 +158,7 @@ export default {
       })
     },
     editArticle(info) {
-      this.$router.push(`/admin/writearticle/${info.ID}`)
+      this.$router.push(`/writearticle/${info.ID}`)
     },
     async getCateList() {
       const { data: res } = await this.$http.get('cates')

@@ -55,7 +55,13 @@
         </a-form-model-item>
         <!-- 文章内容 -->
         <a-form-model-item label="文章内容" prop="content">
-          <a-input v-model="articleInfo.content" />
+          <!-- <a-input v-model="articleInfo.content" /> -->
+          <mavon-editor
+            ref="md"
+            v-model="articleInfo.content"
+            @imgAdd="$imgAdd"
+            @imgDel="$imgDel"
+          />
         </a-form-model-item>
         <!-- 提交和取消按钮 -->
         <a-form-model-item :wrapper-col="{ span: 14, offset: 0 }">
@@ -139,7 +145,7 @@ export default {
       this.categoryList = res.data.list
     },
     uploadImgs(info) {
-      console.log('uploadImgs:', info)
+      console.log('uploadImgs info: ', info)
       if (info.file.status !== 'uploading') {
 
       }
@@ -181,6 +187,18 @@ export default {
     },
     cancleAdd() {
       this.$refs.articleForm.resetFields()
+    },
+    async uploadEditorImg(file) {
+      const { data: res } = await this.$http.post('/upload', { file })
+      console.log(res)
+      if (res.status !== 200) return this.$message.error(res.msg)
+      return res.url
+    },
+    $imgDel() { },
+    $imgAdd(pos, file) {
+      console.log(pos, file)
+      const url = this.uploadEditorImg(file)
+      this.$refs.md.$img2Url(pos, url)
     }
   }// methods
 }// export

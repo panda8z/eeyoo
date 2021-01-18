@@ -10,7 +10,11 @@ import (
 )
 
 func UploadFile(c *gin.Context) {
-	file, fHeader, _ := c.Request.FormFile("file")
+	file, fHeader, err := c.Request.FormFile("file")
+	if err != nil {
+		c.Abort()
+		return
+	}
 	fileSize := fHeader.Size
 
 	url, code := model.UploadFile(file, fileSize)

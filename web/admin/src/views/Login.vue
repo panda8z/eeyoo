@@ -28,6 +28,7 @@
             placeholder="请输入密码"
             enter-button
             type="password"
+            v-on:keyup.enter="login"
           >
             <a-icon
               slot="prefix"
@@ -90,7 +91,7 @@ export default {
             return this.$message.error(res.msg)
           }
           window.sessionStorage.setItem('token', res.data.token)
-          this.$router.push('/admin')
+          this.$router.push('index')
           this.$message.success('登录成功！')
         }
       )
@@ -102,6 +103,9 @@ export default {
 
 <style scoped>
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   background-color: #282c34;
 }

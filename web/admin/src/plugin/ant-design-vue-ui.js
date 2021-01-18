@@ -1,5 +1,7 @@
 
 import Vue from 'vue'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 import {
   Button,
   FormModel,
@@ -37,3 +39,5 @@ Vue.use(Modal) // 对话框
 Vue.use(Select) // 选择下拉框
 Vue.use(Upload) // 上传按钮
 Vue.use(Spin) // 加载中
+
+Vue.use(mavonEditor)
