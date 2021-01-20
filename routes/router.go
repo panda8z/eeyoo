@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	v1 "github.com/panda8z/eeyoo/api/v1"
 	"github.com/panda8z/eeyoo/middleware"
@@ -16,6 +18,13 @@ func InitRouter() {
 	r.Use(middleware.Logger())
 	r.Use(gin.Recovery())
 	r.Use(middleware.CorsConfig())
+	r.LoadHTMLGlob("web/admin/dist/index.html")
+	r.Static("admin/static", "web/admin/dist/static")
+	r.StaticFile("admin/favicon.ico", "web/admin/dist/favicon.ico")
+
+	r.GET("admin", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", nil)
+	})
 
 	authRouter := r.Group("api/v1")
 	authRouter.Use(middleware.Jwt())
