@@ -3,8 +3,22 @@
 
 [Ant Design of Vue - Ant Design Vue](https://antdv.com/docs/vue/introduce-cn/)
 
+## install vue
 
+```shell
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+```
+
+## init project
+
+```
+vue create admin
+```
 ## Project setup
+
+
 ```
 yarn install
 ```
