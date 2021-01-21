@@ -109,7 +109,9 @@ export default {
       },
       categoryList: [],
       uploadURL: URL + '/upload',
-      headers: {},
+      headers: {
+        Authorization: 'Beare ' + window.sessionStorage.getItem('token')
+      },
       uploadFileList: [],
       articleRules: {
         title: [{ required: true, message: '请输入文章标题', trigger: 'blur' }],

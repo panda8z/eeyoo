@@ -34,6 +34,10 @@
         <a-icon type="profile" />
         <span>用户列表</span>
       </a-menu-item>
+      <a-menu-item key="profile">
+        <a-icon type="setting" />
+        <span>个人信息</span>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>
