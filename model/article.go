@@ -68,13 +68,13 @@ func ArticleList(title string, pageSize int, pageNum int) ([]Article, int, int) 
 
 	if title != "" {
 		db.Model(&arts).Where("title LIKE ?", title+"%").Count(&total)
-		err := db.Order("update_at desc").Preload("Category").Where("title LIKE ?", title+"%").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+		err := db.Order("Updated_At Desc").Preload("Category").Where("title LIKE ?", title+"%").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
 		if err != nil && err != gorm.ErrRecordNotFound {
 			return nil, 0, errors.ERROR
 		}
 	} else {
 		db.Model(&arts).Count(&total)
-		err := db.Order("update_at desc").Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
+		err := db.Order("Updated_At Desc").Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&arts).Error
 		if err != nil && err != gorm.ErrRecordNotFound {
 			return nil, 0, errors.ERROR
 		}
