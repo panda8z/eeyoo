@@ -9,6 +9,7 @@ import ArticleList from '../components/article/ArticleList'
 import WriteArticle from '../components/article/WriteArticle'
 import CategoryList from '../components/category/CategoryList'
 import UserList from '../components/user/UserList'
+import Profile from '../components/user/Profile'
 
 Vue.use(VueRouter)
 
@@ -35,7 +36,8 @@ const routes = [
         props: true
       },
       { path: 'catelist', component: CategoryList },
-      { path: 'userlist', component: UserList }
+      { path: 'userlist', component: UserList },
+      { path: 'profile', component: Profile }
     ]
   }
 ]
