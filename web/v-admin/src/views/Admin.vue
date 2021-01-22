@@ -9,7 +9,7 @@
 
       <!-- 内容 -->
       <a-layout-content>
-        <router-view></router-view>
+        <router-view :key="$router.path"></router-view>
       </a-layout-content>
 
       <!-- 页脚 -->
