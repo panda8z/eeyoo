@@ -18,9 +18,9 @@ func InitRouter() {
 	r.Use(middleware.Logger())
 	r.Use(gin.Recovery())
 	r.Use(middleware.CorsConfig())
-	r.LoadHTMLGlob("web/admin/dist/index.html")
-	r.Static("admin/static", "web/admin/dist/static")
-	r.StaticFile("admin/favicon.ico", "web/admin/dist/favicon.ico")
+	r.LoadHTMLGlob("web/v-admin/dist/index.html")
+	r.Static("admin/static", "web/v-admin/dist/static")
+	r.StaticFile("admin/favicon.ico", "web/v-admin/dist/favicon.ico")
 
 	r.GET("admin", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", nil)
